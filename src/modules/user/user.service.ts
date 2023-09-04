@@ -72,14 +72,18 @@ export class UserService {
       if (candidate) {
         if (candidate.username === username) reasons.push('username');
         if (candidate.email === email) reasons.push('email');
+        return {
+          reasons,
+          id: candidate.id,
+          username: candidate.username,
+          email: candidate.email,
+        }
       }
       return {
-        reasons,
-        id: candidate.id,
-        username: candidate.username,
-        email: candidate.email,
+        reasons
       };
-    } catch {
+    } catch(e) {
+      console.log(e)
       throw new InternalServerErrorException(
         this.i18n.t('user.failedToCheckUserExist'),
       );
@@ -88,8 +92,9 @@ export class UserService {
 
   async saveCommonUserToDb({ username, email, password }: RegisterUserDto) {
     const { reasons } = await this.isUserExist({ email, username });
-
+    console.log(reasons.length);
     if (reasons.length) {
+      console.log('here');
       throw new ConflictException(
         this.i18n.t('user.userWithProvidedCredentialsAlreadyExist', {
           args: {
@@ -98,7 +103,6 @@ export class UserService {
         }),
       );
     }
-
     try {
       const hashedPassword = await this.hashPassword({ password });
       const newUser = new this.UserModel({
@@ -255,7 +259,6 @@ export class UserService {
     try {
       const [userCode, codeTimestamp] = await this.getCode({ id, type });
       if (userCode !== code) {
-        console.log('object');
         throw new BadRequestException(this.i18n.t('user.codeInvalid'));
       }
       const timeDifferenceInMinutes =

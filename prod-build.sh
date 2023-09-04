@@ -16,4 +16,4 @@ else
   echo "${RED}Failed to login to Docker Hub. Please check your credentials and try again.${NC}"
 fi
 
-docker push ketjo/k-passport:latest
+docker push ketjo/ez-shops:latest

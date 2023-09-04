@@ -73,10 +73,10 @@ export class UserController {
     this.userService.loadFixtures();
   }
 
-  @Get(Paths.passwordResetPage)
-  @ApiExcludeEndpoint()
-  @Render('password-reset/index')
-  root() {}
+  // @Get(Paths.passwordResetPage)
+  // @ApiExcludeEndpoint()
+  // @Render('password-reset/index')
+  // root() {}
 
   @Get(Paths.emailConfirmation)
   @ApiExcludeEndpoint()
@@ -84,8 +84,8 @@ export class UserController {
   async getEmailConfirmed(@Query(Params.id) id: string) {
     if (!id) throw new NotFoundException(this.i18n.t('user.notFound'));
     await this.userService.markUserEmailConfirmed({ id });
-    // TODO Put here realization for redirect to init project
-    return { redirectTo: 'http://google.com' };
+    const redirectTo = this.configService.get<string>('FRONTEND_HOST')
+    return { redirectTo };
   }
 
   @ApiOperation({ summary: 'Send link to reset password' })
@@ -132,8 +132,8 @@ export class UserController {
       id,
       type: CodeTypes.resetPassword,
     });
-    const { host } = req.headers;
-    const link = `http://${host}/${UserEndpoints.passwordResetPage}?${Params.id}=${id}&${Params.resetPassCode}=${code}`;
+    const host = this.configService.get<string>('FRONTEND_HOST')
+    const link = `http://${host}/reset-password?${Params.id}=${id}&${Params.resetPassCode}=${code}`;
     const logoLink = `http://${host}/assets/images/logo(70x70).png`;
     try {
       await this.mailerService.sendMail({

@@ -2,8 +2,8 @@ version: '3.9'
 
 services:
   server:
-    image: ketjo/k-passport:latest
-    container_name: k-passport
+    image: ketjo/ez-shops:latest
+    container_name: ez-shops
     build:
       context: ./
       dockerfile: Dockerfile
@@ -12,7 +12,7 @@ services:
     restart: always
   database:
     image: mongo:5.0.0
-    container_name: k-passport_database
+    container_name: ez-shops_database
     ports:
       - '${DATABASE_PORT}:27017'
     restart: always
