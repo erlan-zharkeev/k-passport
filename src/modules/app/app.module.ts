@@ -12,13 +12,10 @@ import { AuthService } from '../auth/auth.service';
 import { JwtService } from '@nestjs/jwt';
 import { UserService } from '../user/user.service';
 import { EmailModule } from '../mailer/email.module';
-import { ServeStaticModule } from '@nestjs/serve-static';
 import { join } from 'path';
 
 @Module({
-  imports: [Config, I18n, DB, UserModel, UserModule, AuthModule, EmailModule, ServeStaticModule.forRoot({
-    rootPath: join(__dirname, '..', 'public'),
-  })],
+  imports: [Config, I18n, DB, UserModel, UserModule, AuthModule, EmailModule],
   controllers: [AppController, AuthController],
   providers: [AppService, AuthService, UserService, JwtService],
 })
