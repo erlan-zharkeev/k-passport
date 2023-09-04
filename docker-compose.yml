@@ -1,0 +1,18 @@
+version: '3.9'
+
+services:
+  server:
+    image: ketjo/k-passport:latest
+    container_name: k-passport
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    ports:
+      - '${PORT}:${PORT}'
+    restart: always
+  database:
+    image: mongo:5.0.0
+    container_name: k-passport_database
+    ports:
+      - '${DATABASE_PORT}:27017'
+    restart: always

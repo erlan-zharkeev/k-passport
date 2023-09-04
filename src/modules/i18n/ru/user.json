@@ -1,0 +1,10 @@
+{
+  "registered": "User registered, check your email to proceed with verification",
+  "notFound": "User not found",
+  "passwordHashFailed": "Password hashing failed",
+  "failedToSaveToDb": "Failed to save to the database",
+  "failedToGetUserData": "Failed to retrieve user data from the database",
+  "failedToCheckUserExist": "Failed to check if user exists",
+  "userWithProvidedCredentialsAlreadyExist": "A user with the provided credentials ({reasons}) already exists.",
+  "failedToUpdateRefreshToken": "Internal code 001"
+}

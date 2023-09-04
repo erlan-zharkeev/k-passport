@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json.schemastore.org/nest-cli",
+  "baseUrl": "./src",
+  "paths": {
+    "@modules/*": ["modules/*"]
+  },
+  "collection": "@nestjs/schematics",
+  "sourceRoot": "src",
+  "compilerOptions": {
+    "deleteOutDir": true,
+    "assets": [
+      {
+        "include": "/modules/i18n/**/*",
+        "watchAssets": true
+      },
+      {
+        "include": "/modules/mailer/templates/**/*",
+        "watchAssets": true
+      },
+      {
+        "include": "/public/assets/images/**/*",
+        "watchAssets": true
+      }
+    ]
+  }
+}
