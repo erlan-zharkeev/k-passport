@@ -134,7 +134,7 @@ export class UserController {
     });
     const host = this.configService.get<string>('FRONTEND_HOST')
     const link = `http://${host}/reset-password?${Params.id}=${id}&${Params.resetPassCode}=${code}`;
-    const logoLink = `http://${host}/assets/images/logo(70x70).png`;
+    const logoLink = `http://${host}/assets/images/logo.png`;
     try {
       await this.mailerService.sendMail({
         to: email,

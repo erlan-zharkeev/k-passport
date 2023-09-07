@@ -21,7 +21,6 @@ async function bootstrap() {
   app.useGlobalPipes(new I18nValidationPipe());
   app.useGlobalFilters(new I18nValidationExceptionFilter());
   app.use(cookieParser());
-  app.useStaticAssets(join(__dirname, '..', 'public'));
   app.setBaseViewsDir(join(__dirname, '..', 'views'));
   app.setViewEngine('hbs');
   const document = SwaggerModule.createDocument(app, swaggerConfig);

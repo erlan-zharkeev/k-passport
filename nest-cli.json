@@ -16,10 +16,6 @@
       {
         "include": "/modules/mailer/templates/**/*",
         "watchAssets": true
-      },
-      {
-        "include": "/public/assets/images/**/*",
-        "watchAssets": true
       }
     ]
   }
