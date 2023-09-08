@@ -16,14 +16,12 @@ enum Environment {
 
 export interface IConfiguration {
   port: string;
-  databaseURI: string;
   name: string;
   version: string;
 }
 
 export const nestConfig = (): IConfiguration => ({
   port: process.env.PORT,
-  databaseURI: process.env.DATABASE_URI,
   name,
   version,
 });

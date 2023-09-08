@@ -1,6 +1,12 @@
 version: '3.9'
 
 services:
+  db:
+    image: mongo:5.0.0
+    container_name: db
+    ports:
+      - '${DATABASE_PORT}:27017'
+    restart: always
   server:
     image: ketjo/ez-shops:latest
     container_name: ez-shops
@@ -10,9 +16,11 @@ services:
     ports:
       - '${PORT}:${PORT}'
     restart: always
-  database:
-    image: mongo:5.0.0
-    container_name: ez-shops_database
+    links:
+      - 'db'
+  webserver:
+    image: nginx:latest
     ports:
-      - '${DATABASE_PORT}:27017'
-    restart: always
+      - 80:80
+      - 443:443
+    restart: unless-stopped
