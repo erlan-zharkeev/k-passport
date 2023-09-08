@@ -10,8 +10,8 @@ COPY . .
 
 RUN yarn build
 
-ENV PORT $SERVER_PORT
+ENV PORT $PORT
 
-EXPOSE $SERVER_PORT
+EXPOSE $PORT
 
 CMD [ "yarn", "start:prod" ]
