@@ -11,6 +11,7 @@ import {
   Render,
   BadRequestException,
   HttpCode,
+  InternalServerErrorException,
 } from '@nestjs/common';
 import { UserService } from './user.service';
 import { RegisterUserDto } from './dto/register-user-dto';
@@ -84,7 +85,7 @@ export class UserController {
   async getEmailConfirmed(@Query(Params.id) id: string) {
     if (!id) throw new NotFoundException(this.i18n.t('user.notFound'));
     await this.userService.markUserEmailConfirmed({ id });
-    const redirectTo = this.configService.get<string>('FRONTEND_HOST')
+    const redirectTo = this.configService.get<string>('FRONTEND_HOST');
     return { redirectTo };
   }
 
@@ -132,7 +133,7 @@ export class UserController {
       id,
       type: CodeTypes.resetPassword,
     });
-    const host = this.configService.get<string>('FRONTEND_HOST')
+    const host = this.configService.get<string>('FRONTEND_HOST');
     const link = `http://${host}/reset-password?${Params.id}=${id}&${Params.resetPassCode}=${code}`;
     const logoLink = `http://${host}/assets/images/logo.png`;
     try {
@@ -226,8 +227,11 @@ export class UserController {
         },
       });
       return { message };
-    } catch {
-      this.i18n.t('user.failedToSendEmailConfirmationLink');
+    } catch (e) {
+      console.log(e);
+      throw new InternalServerErrorException(
+        this.i18n.t('user.failedToSendEmailConfirmationLink'),
+      );
     }
   }
 }

@@ -92,9 +92,7 @@ export class UserService {
 
   async saveCommonUserToDb({ username, email, password }: RegisterUserDto) {
     const { reasons } = await this.isUserExist({ email, username });
-    console.log(reasons.length);
     if (reasons.length) {
-      console.log('here');
       throw new ConflictException(
         this.i18n.t('user.userWithProvidedCredentialsAlreadyExist', {
           args: {

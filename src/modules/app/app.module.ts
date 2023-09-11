@@ -14,6 +14,10 @@ import { UserService } from '../user/user.service';
 import { EmailModule } from '../mailer/email.module';
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { join } from 'path';
+import { ProductModule } from '../product/product.module';
+import { ProductService } from '../product/product.service';
+import { ProductController } from '../product/product.controller';
+import { ProductModel } from '../product/product.model';
 
 @Module({
   imports: [
@@ -24,11 +28,13 @@ import { join } from 'path';
     I18n,
     DB,
     UserModel,
+    ProductModel,
     UserModule,
     AuthModule,
     EmailModule,
+    ProductModule,
   ],
-  controllers: [AppController, AuthController],
-  providers: [AppService, AuthService, UserService, JwtService],
+  controllers: [AppController, AuthController, ProductController],
+  providers: [AppService, AuthService, UserService, JwtService, ProductService],
 })
 export class AppModule {}

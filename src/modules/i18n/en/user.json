@@ -8,7 +8,7 @@
   "userWithProvidedCredentialsAlreadyExist": "User with provided credentials ({reasons}) already exists.",
   "failedToUpdateRefreshToken": "Internal code 001",
   "emailConfirmation": "Email confirmation",
-  "failedToSendEmailConfirmationLink": "Failed email send email",
+  "failedToSendEmailConfirmationLink": "Failed to send email",
   "failedToMarkEmailAsConfirmed": "Failed to mark email as confirmed",
   "emailConfirmed": "Email confirmed",
   "emailNotConfirmed": "The linked email has not been confirmed",
