@@ -1,6 +1,6 @@
-FROM --platform=linux/amd64 node:18.13.0
+FROM  --platform=linux/amd64 node:18.13.0
 
-WORKDIR /server
+WORKDIR /app
 
 COPY package*.json ./
 
@@ -10,8 +10,8 @@ COPY . .
 
 RUN yarn build
 
-ENV PORT $PORT
+ENV PORT $SERVER_PORT
 
-EXPOSE $PORT
+EXPOSE $SERVER_PORT
 
 CMD [ "yarn", "start:prod" ]

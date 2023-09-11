@@ -5,7 +5,7 @@ services:
     image: mongo:5.0.0
     container_name: db
     ports:
-      - '${DATABASE_PORT}:27017'
+      - '${DATABASE_PORT}:${DATABASE_PORT}'
     restart: always
   server:
     image: ketjo/ez-shops:latest
@@ -14,13 +14,13 @@ services:
       context: ./
       dockerfile: Dockerfile
     ports:
-      - '${PORT}:${PORT}'
+      - '${SERVER_PORT}:${SERVER_PORT}'
     restart: always
     links:
       - 'db'
-  webserver:
-    image: nginx:latest
-    ports:
-      - 80:80
-      - 443:443
-    restart: unless-stopped
+  # webserver:
+  #   image: nginx:latest
+  #   ports:
+  #     - 80:80
+  #     - 443:443
+  #   restart: unless-stopped
