@@ -18,9 +18,3 @@ services:
     restart: always
     links:
       - 'db'
-  # webserver:
-  #   image: nginx:latest
-  #   ports:
-  #     - 80:80
-  #     - 443:443
-  #   restart: unless-stopped
