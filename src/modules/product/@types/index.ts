@@ -1,9 +1,10 @@
 export interface Product {
+  // Article-Артикул
   identifier: string;
   mainImageUrl: string;
   title: string;
   description: string;
-  rubPrice: string;
+  rubPrice: number;
   category: string;
-  inStockQuantity: string;
+  inStockQuantity: number;
 }

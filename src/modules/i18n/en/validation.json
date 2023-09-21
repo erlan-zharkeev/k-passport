@@ -3,7 +3,14 @@
   "codeIsShort": "Code is shorter than {min}",
   "emailIncorrect": "Email is incorrect",
   "usernameLengthOutOfRange": "Username length is out of range min: {min}, max: {max}",
-  "isNotAString": "Password is not a string",
+  "passwordIsNotAString": "Password is not a string",
   "passwordLengthOutOfRange": "Password length is out of range min: {min}, max: {max}",
-  "passwordNotMatchRegexp": "Make sure the password: 1)Contains at least one digit or one non-alphanumeric character, 2)Does not start with a dot or a newline character, 3) Contains at least one uppercase letter, 4) Contains at least one lowercase letter."
+  "passwordNotMatchRegexp": "Make sure the password: 1)Contains at least one digit or one non-alphanumeric character, 2)Does not start with a dot or a newline character, 3) Contains at least one uppercase letter, 4) Contains at least one lowercase letter.",
+  "isNotAString": "{value} is not a string",
+  "isNotANumber": "{value} is not a number",
+  "isShort": "{value} is to short, min is :{}",
+  "product": {
+    "identifierIsTooSmall": "Identifier min length is {value}",
+    "mainImageUrlIsNotAString": "Main image url is not a string"
+  }
 }

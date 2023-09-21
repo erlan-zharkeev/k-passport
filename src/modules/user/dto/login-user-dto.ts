@@ -12,7 +12,7 @@ import { EmailUserDto } from './email-user-dto';
 export class LoginUserDto extends EmailUserDto {
   @ApiProperty()
   @IsString({
-    message: i18nValidationMessage<I18nTranslations>('validation.isNotAString'),
+    message: i18nValidationMessage<I18nTranslations>('validation.passwordIsNotAString'),
   })
   @Length(1, 20, {
     message: (args: ValidationArguments) => {

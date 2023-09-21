@@ -10,6 +10,9 @@ export type I18nTranslations = {
     "common": {
         "undefinedError": string;
     };
+    "product": {
+        "failedToSaveProductToDb": string;
+    };
     "user": {
         "registered": string;
         "notFound": string;
@@ -41,9 +44,16 @@ export type I18nTranslations = {
         "codeIsShort": string;
         "emailIncorrect": string;
         "usernameLengthOutOfRange": string;
-        "isNotAString": string;
+        "passwordIsNotAString": string;
         "passwordLengthOutOfRange": string;
         "passwordNotMatchRegexp": string;
+        "isNotAString": string;
+        "isNotANumber": string;
+        "isShort": string;
+        "product": {
+            "identifierIsTooSmall": string;
+            "mainImageUrlIsNotAString": string;
+        };
     };
 };
 export type I18nPath = Path<I18nTranslations>;

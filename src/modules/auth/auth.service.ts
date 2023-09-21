@@ -21,6 +21,10 @@ export class AuthService {
     private readonly configService: ConfigService,
   ) {}
 
+  decodeJwt (jwtToken: string) {
+    return this.jwtService.decode(jwtToken)
+  }
+
   async validateUserPassword(loginData: LoginUserDto) {
     const { email, password } = loginData;
     const user = await this.userService.getUserByProperty({

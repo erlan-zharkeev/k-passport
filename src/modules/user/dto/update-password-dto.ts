@@ -12,7 +12,7 @@ import { I18nTranslations } from 'src/modules/i18n/i18n.generated';
 export class UpdatePasswordDto {
   @ApiProperty()
   @IsString({
-    message: i18nValidationMessage<I18nTranslations>('validation.isNotAString'),
+    message: i18nValidationMessage<I18nTranslations>('validation.passwordIsNotAString'),
   })
   @Length(1, 20, {
     message: (args: ValidationArguments) => {
@@ -34,7 +34,7 @@ export class UpdatePasswordDto {
 
   @ApiProperty()
   @IsString({
-    message: i18nValidationMessage<I18nTranslations>('validation.isNotAString'),
+    message: i18nValidationMessage<I18nTranslations>('validation.passwordIsNotAString'),
   })
   @MinLength(10, {
     message: (args: ValidationArguments) => {
@@ -50,7 +50,7 @@ export class UpdatePasswordDto {
 
   @ApiProperty()
   @IsString({
-    message: i18nValidationMessage<I18nTranslations>('validation.isNotAString'),
+    message: i18nValidationMessage<I18nTranslations>('validation.passwordIsNotAString'),
   })
   @MinLength(4, {
     message: (args: ValidationArguments) => {

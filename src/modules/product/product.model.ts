@@ -2,6 +2,7 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { Schema } from 'mongoose';
 
 export const ProductSchema = new Schema({
+  // Article-Артикул
   identifier: {
     type: String,
     unique: true,
@@ -18,7 +19,7 @@ export const ProductSchema = new Schema({
     required: true,
   },
   rubPrice: {
-    type: String,
+    type: Number,
     unique: false,
     required: true,
   },
