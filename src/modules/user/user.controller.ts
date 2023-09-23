@@ -38,6 +38,7 @@ import { EmailUserDto } from './dto/email-user-dto';
 import { v4 as uuidv4 } from 'uuid';
 import { UpdatePasswordDto } from './dto/update-password-dto';
 import { ConfigService } from '@nestjs/config';
+import { AppService } from '../app/app.service';
 
 enum Params {
   id = 'id',
@@ -70,6 +71,7 @@ export class UserController {
     private readonly mailerService: MailerService,
     private readonly i18n: I18nService<I18nTranslations>,
     private readonly configService: ConfigService,
+    private readonly appService: AppService,
   ) {
     this.userService.loadFixtures();
   }
@@ -134,8 +136,10 @@ export class UserController {
       type: CodeTypes.resetPassword,
     });
     const host = this.configService.get<string>('FRONTEND_HOST');
+
     const link = `http://${host}/reset-password?${Params.id}=${id}&${Params.resetPassCode}=${code}`;
-    const logoLink = `http://${host}/assets/images/logo.png`;
+    const logoLink = this.appService.getStaticImageByName({ name: 'logo.jpg' });
+
     try {
       await this.mailerService.sendMail({
         to: email,
@@ -186,10 +190,10 @@ export class UserController {
   @UseGuards(AuthGuard)
   @Get(Paths.data)
   async getData(@Req() req: JWTAuthGuardRequest) {
-    const { id } = req.user;
+    const userId = req.user.sub;
     const user = await this.userService.getUserByProperty({
       property: PossibleUserSearchProperty.id,
-      value: id,
+      value: userId,
       filters: ['password'],
     });
     return user;
@@ -212,7 +216,8 @@ export class UserController {
     const { email, username } = registerUserDto;
     const { host } = req.headers;
     const link = `http://${host}/${UserEndpoints.emailConfirmation}?${Params.id}=${data.id}`;
-    const logoLink = `http://${host}/assets/images/logo(70x70).png`;
+    const logoLink = this.appService.getStaticImageByName({ name: 'logo.jpg' });
+
     try {
       await this.mailerService.sendMail({
         to: email,

@@ -1,3 +1,13 @@
 {
-  "failedToSaveProductToDb": "Failed to save product to database"
+  "failedToSaveProductToDb": "Failed to save product to database",
+  "failedToSaveProduct": "Failed to save product",
+  "productSavedSuccess": "Product saved successfully",
+  "productWithTheSameArticleAlreadyExist": "Product with the same article already exist",
+  "productDeletedSuccess": "Product delete successfully",
+  "failedToDeleteProduct": "Failed to delete product, {reason}",
+  "productNotExist": "Product not exist",
+  "failedToGetProducts": "Failed to get products",
+  "failedToUpdateProduct": "Failed to update product",
+  "productUpdatedSuccessfully": "Product updated successfully",
+  "productIdOrTokenNotProvided": "Product id or token not provided"
 }

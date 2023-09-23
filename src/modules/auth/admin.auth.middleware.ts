@@ -39,8 +39,9 @@ export class AdminAuthMiddleware implements NestMiddleware {
         res.cookie('jwt', accessToken).cookie('jwtr', refreshToken);
         next();
       } catch (e) {
-        if (!isRefresh)
+        if (!isRefresh) {
           return checkToken(jwtr, getSecret('JWTR_SIGN_SECRET'), true);
+        }
         return res.redirect(`auth/admin?from=${req.baseUrl.slice(1)}`);
       }
     };

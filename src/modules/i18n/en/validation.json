@@ -9,6 +9,7 @@
   "isNotAString": "{value} is not a string",
   "isNotANumber": "{value} is not a number",
   "isShort": "{value} is to short, min is :{}",
+  "notEmpty": "{value} can't be empty",
   "product": {
     "identifierIsTooSmall": "Identifier min length is {value}",
     "mainImageUrlIsNotAString": "Main image url is not a string"

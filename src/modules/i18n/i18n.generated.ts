@@ -12,6 +12,16 @@ export type I18nTranslations = {
     };
     "product": {
         "failedToSaveProductToDb": string;
+        "failedToSaveProduct": string;
+        "productSavedSuccess": string;
+        "productWithTheSameArticleAlreadyExist": string;
+        "productDeletedSuccess": string;
+        "failedToDeleteProduct": string;
+        "productNotExist": string;
+        "failedToGetProducts": string;
+        "failedToUpdateProduct": string;
+        "productUpdatedSuccessfully": string;
+        "productIdOrTokenNotProvided": string;
     };
     "user": {
         "registered": string;
@@ -38,6 +48,12 @@ export type I18nTranslations = {
         "codeIsExpired": string;
         "failedToGetCode": string;
         "codeCantBeSend": string;
+        "failedToSaveProductToUser": string;
+        "failedToDeleteProductToUser": string;
+        "productNotExistInUserProduct": string;
+        "failedToGetProductIds": string;
+        "failedToReplaceProductIdentifier": string;
+        "userNotFound": string;
     };
     "validation": {
         "usernameMustNotConsistSigns": string;
@@ -50,6 +66,7 @@ export type I18nTranslations = {
         "isNotAString": string;
         "isNotANumber": string;
         "isShort": string;
+        "notEmpty": string;
         "product": {
             "identifierIsTooSmall": string;
             "mainImageUrlIsNotAString": string;

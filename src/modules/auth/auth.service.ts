@@ -11,6 +11,7 @@ import * as bcrypt from 'bcryptjs';
 import { I18nService } from 'nestjs-i18n';
 import { I18nTranslations } from '../i18n/i18n.generated';
 import { ConfigService } from '@nestjs/config';
+import { Request } from 'express';
 
 @Injectable()
 export class AuthService {
@@ -21,19 +22,18 @@ export class AuthService {
     private readonly configService: ConfigService,
   ) {}
 
-  decodeJwt (jwtToken: string) {
-    return this.jwtService.decode(jwtToken)
-  }
-
   async validateUserPassword(loginData: LoginUserDto) {
     const { email, password } = loginData;
     const user = await this.userService.getUserByProperty({
       property: PossibleUserSearchProperty.email,
       value: email,
     });
-    if (!user) throw new NotFoundException(this.i18n.t('user.notFound'));
-    if (!user.confirmed)
+    if (!user) {
+      throw new NotFoundException(this.i18n.t('user.notFound'));
+    }
+    if (!user.confirmed) {
       throw new UnauthorizedException(this.i18n.t('user.emailNotConfirmed'));
+    }
     const isPasswordValid = bcrypt.compareSync(password, user.password);
     if (isPasswordValid) {
       delete user.password;

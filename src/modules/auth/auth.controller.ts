@@ -21,7 +21,6 @@ import {
   ApiTags,
 } from '@nestjs/swagger';
 import { UserDto } from '../user/dto/user-dto';
-import { UserRole } from '../user/@types';
 
 enum Paths {
   admin = 'admin',
@@ -68,12 +67,6 @@ export class AuthController {
       message: this.i18n.t('auth.loginSuccess'),
       data: userData,
     };
-    if (userData.role === UserRole.common) {
-      return response
-        .header('Authorization', `Bearer ${accessToken}`)
-        .header('Refresh-token', refreshToken)
-        .json(successData);
-    }
     return response
       .cookie('jwt', accessToken)
       .cookie('jwtr', refreshToken)

@@ -22,7 +22,7 @@ import { ProductModel } from '../product/product.model';
 @Module({
   imports: [
     ServeStaticModule.forRoot({
-      rootPath: join(__dirname, '..', './public'),
+      rootPath: join(__dirname, '..', './static'),
     }),
     Config,
     I18n,

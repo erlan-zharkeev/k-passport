@@ -16,6 +16,10 @@
       {
         "include": "/modules/mailer/templates/**/*",
         "watchAssets": true
+      },
+      {
+        "include": "/modules/static/**/*",
+        "watchAssets": true
       }
     ]
   }

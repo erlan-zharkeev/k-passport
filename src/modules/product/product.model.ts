@@ -15,7 +15,7 @@ export const ProductSchema = new Schema({
   },
   title: {
     type: String,
-    unique: true,
+    unique: false,
     required: true,
   },
   rubPrice: {

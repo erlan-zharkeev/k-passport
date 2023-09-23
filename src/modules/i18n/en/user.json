@@ -3,7 +3,7 @@
   "notFound": "User not found",
   "passwordHashFailed": "Password hash failed",
   "failedToSaveToDb": "Failed to save to database",
-  "failedToGetUserData": "Failed to get user data from db",
+  "failedToGetUserData": "Failed to get user data from db, {reason}",
   "failedToCheckUserExist": "Failed to check user exist",
   "userWithProvidedCredentialsAlreadyExist": "User with provided credentials ({reasons}) already exists.",
   "failedToUpdateRefreshToken": "Internal code 001",
@@ -22,5 +22,11 @@
   "failedToSendCode": "Failed to send code",
   "codeIsExpired": "Code is expired",
   "failedToGetCode": "Failed to get code",
-  "codeCantBeSend": "Code cant be sent, try after 1 minute"
+  "codeCantBeSend": "Code cant be sent, try after 1 minute",
+  "failedToSaveProductToUser": "Failed to save product to user",
+  "failedToDeleteProductToUser": "Failed to delete product from user, {reason}",
+  "productNotExistInUserProduct": "Product not exist in user product list",
+  "failedToGetProductIds": "Failed to get product ids",
+  "failedToReplaceProductIdentifier": "Failed to change product id",
+  "userNotFound": "User not found"
 }

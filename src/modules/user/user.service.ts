@@ -1,6 +1,8 @@
 import {
   BadRequestException,
   ConflictException,
+  HttpException,
+  HttpStatus,
   Injectable,
   InternalServerErrorException,
 } from '@nestjs/common';
@@ -77,13 +79,13 @@ export class UserService {
           id: candidate.id,
           username: candidate.username,
           email: candidate.email,
-        }
+        };
       }
       return {
-        reasons
+        reasons,
       };
-    } catch(e) {
-      console.log(e)
+    } catch (e) {
+      console.log(e);
       throw new InternalServerErrorException(
         this.i18n.t('user.failedToCheckUserExist'),
       );
@@ -139,36 +141,39 @@ export class UserService {
     try {
       const query = { [property]: value };
       const candidate = await this.UserModel.findOne(query).select('-rt -__v');
+      if (!candidate)
+        throw new BadRequestException(this.i18n.t('user.userNotFound'));
       let user: UserDto = null;
-      if (candidate) {
-        const {
-          _id,
-          username,
-          avatarPath,
-          password,
-          data,
-          email,
-          role,
-          confirmed,
-        } = candidate;
-        user = {
-          id: String(_id),
-          password,
-          data: data ?? {},
-          username,
-          email,
-          avatarPath,
-          role: role,
-          confirmed,
-        };
-        filters.forEach((filterKey) => {
-          delete user[filterKey];
-        });
-      }
+      const {
+        _id,
+        username,
+        avatarPath,
+        password,
+        data,
+        email,
+        role,
+        confirmed,
+      } = candidate;
+      user = {
+        id: String(_id),
+        password,
+        data: data ?? {},
+        username,
+        email,
+        avatarPath,
+        role: role,
+        confirmed,
+      };
+      filters.forEach((filterKey) => {
+        delete user[filterKey];
+      });
       return user;
-    } catch {
-      throw new InternalServerErrorException(
-        this.i18n.t('user.failedToGetUserData'),
+    } catch (e) {
+      throw new HttpException(
+        this.i18n.t('user.failedToGetUserData', {
+          args: { reason: e.message },
+        }),
+        e.status,
       );
     }
   }
@@ -274,6 +279,81 @@ export class UserService {
     } catch {
       throw new InternalServerErrorException(
         this.i18n.t('user.failedToCompareCode'),
+      );
+    }
+  }
+
+  async saveProductId({
+    userId,
+    productId,
+  }: {
+    userId: string;
+    productId: string;
+  }) {
+    console.log(productId, userId);
+    try {
+      await this.UserModel.findOneAndUpdate(
+        { _id: userId },
+        { $push: { productIds: productId } },
+      );
+    } catch (e) {
+      throw new InternalServerErrorException(
+        this.i18n.t('user.failedToSaveProductToUser'),
+      );
+    }
+  }
+
+  async deleteProductIdFromUser({ userId, productId }) {
+    try {
+      const { upsertedCount } = await this.UserModel.updateOne(
+        { _id: userId },
+        { $pull: { productIds: productId } },
+      );
+      if (upsertedCount) return;
+      throw new HttpException(
+        this.i18n.t('user.productNotExistInUserProduct'),
+        HttpStatus.BAD_REQUEST,
+      );
+    } catch (e) {
+      throw new HttpException(
+        this.i18n.t('user.failedToDeleteProductToUser', {
+          args: { reason: e.message },
+        }),
+        e.status,
+      );
+    }
+  }
+
+  async getAllProductIds({ userId }: { userId: string }) {
+    try {
+      const { productIds } = await this.UserModel.findOne({ _id: userId });
+      return productIds;
+    } catch (e) {
+      throw new HttpException(
+        this.i18n.t('user.failedToGetProductIds'),
+        e.status,
+      );
+    }
+  }
+
+  async updateProductIdInUserProductList({
+    userId,
+    productId,
+    newProductId,
+  }: {
+    userId: string;
+    productId: string;
+    newProductId: string;
+  }) {
+    try {
+      await this.UserModel.updateOne(
+        { _id: userId, productIds: { $elemMatch: { $eq: productId } } },
+        { $set: { 'productIds.$': newProductId } },
+      );
+    } catch (e) {
+      throw new HttpException(
+        this.i18n.t('user.failedToReplaceProductIdentifier'),
+        e.status,
       );
     }
   }

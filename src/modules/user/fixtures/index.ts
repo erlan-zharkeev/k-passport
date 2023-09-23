@@ -11,6 +11,7 @@ const erlan: UserFixture = {
   confirmed: true,
   confirmAttempts: 999,
   codes: initCodes,
+  productIds: [],
 };
 
 const oleg: UserFixture = {
@@ -23,6 +24,7 @@ const oleg: UserFixture = {
   confirmed: true,
   confirmAttempts: 999,
   codes: initCodes,
+  productIds: [],
 };
 
 export const superAdminFixtures: Array<UserFixture> = [erlan, oleg];

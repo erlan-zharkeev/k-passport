@@ -48,6 +48,10 @@ export const UserSchema = new Schema({
     type: Object,
     required: false,
   },
+  productIds: {
+    type: Array,
+    required: false
+  }
 });
 
 export const UserModel = MongooseModule.forFeature([

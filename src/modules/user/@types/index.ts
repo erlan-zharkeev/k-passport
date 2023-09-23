@@ -9,6 +9,7 @@ export interface User {
   codes: Object;
   data: Object;
   role: UserRole;
+  productIds: String[];
 }
 
 export interface PasswordResetRequest extends Request {
@@ -16,7 +17,7 @@ export interface PasswordResetRequest extends Request {
 }
 
 export interface JWTAuthGuardRequest extends Request {
-  user: { id: string };
+  user: { sub: string };
 }
 
 export interface JWTDecodedObject {
