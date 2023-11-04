@@ -3,7 +3,7 @@ import { initCodes } from '../constants';
 
 const erlan: UserFixture = {
   username: 'erlan',
-  email: 'zharkeev.post@gmail.com',
+  email: 'admin@exmple.com',
   avatarPath: '',
   role: UserRole.superAdmin,
   data: {},
@@ -14,17 +14,4 @@ const erlan: UserFixture = {
   productIds: [],
 };
 
-const oleg: UserFixture = {
-  username: 'oleg',
-  email: 'oleg@gmail.com',
-  avatarPath: '',
-  role: UserRole.superAdmin,
-  data: {},
-  rt: '',
-  confirmed: true,
-  confirmAttempts: 999,
-  codes: initCodes,
-  productIds: [],
-};
-
-export const superAdminFixtures: Array<UserFixture> = [erlan, oleg];
+export const superAdminFixtures: Array<UserFixture> = [erlan];
