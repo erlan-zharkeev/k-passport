@@ -40,11 +40,15 @@ export class AdminAuthMiddleware implements NestMiddleware {
         next();
       } catch (e) {
         if (!isRefresh) {
-          return checkToken(jwtr, getSecret('JWTR_SIGN_SECRET'), true);
+          return checkToken(
+            jwtr,
+            getSecret('K_PASSPORT_JWTR_SIGN_SECRET'),
+            true,
+          );
         }
         return res.redirect(`auth/admin?from=${req.baseUrl.slice(1)}`);
       }
     };
-    checkToken(jwt, getSecret('JWT_SIGN_SECRET'));
+    checkToken(jwt, getSecret('K_PASSPORT_JWT_SIGN_SECRET'));
   }
 }

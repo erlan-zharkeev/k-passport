@@ -16,7 +16,7 @@ import { packageVariables } from '../config/config';
           secure: true,
           auth: {
             user: configService.get<string>('MAIL_SERVICE_TRANSPORT'),
-            pass: configService.get<string>('MAIL_SERVICE_PASS'),
+            pass: configService.get<string>('K_PASSPORT_MAIL_SERVICE_PASS'),
           },
         },
         defaults: {

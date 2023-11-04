@@ -14,7 +14,7 @@ import { AuthGuard } from './auth.guard';
     JwtModule.registerAsync({
       imports: [ConfigModule],
       useFactory: (configService: ConfigService) => ({
-        secret: configService.get<string>('JWT_SIGN_SECRET'),
+        secret: configService.get<string>('K_PASSPORT_JWT_SIGN_SECRET'),
         signOptions: { expiresIn: configService.get<string>('JWT_EXPIRES_IN') },
       }),
       inject: [ConfigService],
