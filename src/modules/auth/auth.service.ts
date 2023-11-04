@@ -70,7 +70,9 @@ export class AuthService {
     role: UserRole;
   }) {
     const payload = { name: username, sub: id, role };
-    const secretKey = isRefresh ? 'JWTR_SIGN_SECRET' : 'JWT_SIGN_SECRET';
+    const secretKey = isRefresh
+      ? 'K_PASSPORT_JWTR_SIGN_SECRET'
+      : 'K_PASSPORT_JWT_SIGN_SECRET';
     const secret = this.configService.get<string>(secretKey);
     const expiresInKey = isRefresh ? 'JWTR_EXPIRES_IN' : 'JWT_EXPIRES_IN';
     const expiresIn = this.configService.get<string>(expiresInKey);

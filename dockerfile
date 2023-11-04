@@ -4,14 +4,14 @@ WORKDIR /app
 
 COPY package*.json ./
 
-RUN yarn
+RUN npm install
 
 COPY . .
 
-RUN yarn build
+RUN npm run build
 
 ENV PORT $SERVER_PORT
 
 EXPOSE $SERVER_PORT
 
-CMD [ "yarn", "start:prod" ]
+CMD [ "npm", "run",  "start:prod" ]
