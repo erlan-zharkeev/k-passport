@@ -8,13 +8,17 @@ services:
       - '${DATABASE_PORT}:${DATABASE_PORT}'
     restart: always
   server:
-    image: ketjo/k-passport:latest
+    image: ghcr.io/erlan-zharkeev/k-passport:latest
     container_name: k-passport
     build:
       context: ./
       dockerfile: Dockerfile
+    env_file:
+      - .env.development
+    environment:
+      DATABASE_URI: mongodb://db:${DATABASE_PORT}/db
     ports:
       - '${SERVER_PORT}:${SERVER_PORT}'
     restart: always
-    links:
-      - 'db'
+    depends_on:
+      - db
