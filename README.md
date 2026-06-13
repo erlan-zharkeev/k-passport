@@ -21,11 +21,3 @@ To start MongoDB through Docker Compose:
 ```bash
 docker-compose --env-file .env.development up -d db
 ```
-
-## Docker
-
-The GitHub Actions Docker workflow publishes images to:
-
-```text
-ghcr.io/erlan-zharkeev/k-passport
-```
